@@ -217,24 +217,21 @@ const thisRound = document.getElementById("r-" + GlobalUserData.rounds[rowIndex]
 writeRoundToTable(thisRound,rowIndex);
 }
 
+
+
 /*************************************************************************
-* @function populateRoundsTable 
-* @desc 
-* Iterate through the userData.rounds array, adding a row corresponding
-* to each round stored in the array. 
-* @global GlobaluserData: object containing the current user's data
-* @global GlobalRoundsDataCaption: The caption for the "Rounds" table
-*************************************************************************/
-function populateRoundsTable() {
-for (let i = 0; i < GlobalUserData.rounds.length; ++i) {
-  addRoundToTable(i);
+ * @function deleteRound
+ * @desc
+ * Deletes a round from the "Rounds" table and from local storage
+ * @param roundId -- the unique id of the round to be deleted
+ * @returns -- true if round could be deleted, false otherwise
+ *************************************************************************/
+function deleteRound(roundId) {
+    GlobalUserData.rounds = GlobalUserData.rounds.filter(function (round) {
+        return round.roundNum !== roundId;
+    });
 }
-if (GlobalUserData.rounds.length == 1) {
-  GlobalRoundsTableCaption.textContent = "Table displaying 1 speedgolf round";
-} else {
-  GlobalRoundsTableCaption.textContent = "Table displaying " + GlobalUserData.rounds.length + " speedgolf rounds";
-}
-}
+
 
 /*************************************************************************
  * @function confirmDelete
@@ -273,6 +270,26 @@ function confirmDelete(roundId) {
       modal.hide();
   });
   modal.show();
+}
+
+
+/*************************************************************************
+* @function populateRoundsTable 
+* @desc 
+* Iterate through the userData.rounds array, adding a row corresponding
+* to each round stored in the array. 
+* @global GlobaluserData: object containing the current user's data
+* @global GlobalRoundsDataCaption: The caption for the "Rounds" table
+*************************************************************************/
+function populateRoundsTable() {
+for (let i = 0; i < GlobalUserData.rounds.length; ++i) {
+  addRoundToTable(i);
+}
+if (GlobalUserData.rounds.length == 1) {
+  GlobalRoundsTableCaption.textContent = "Table displaying 1 speedgolf round";
+} else {
+  GlobalRoundsTableCaption.textContent = "Table displaying " + GlobalUserData.rounds.length + " speedgolf rounds";
+}
 }
 
 /*************************************************************************
