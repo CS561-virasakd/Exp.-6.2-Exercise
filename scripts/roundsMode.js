@@ -241,7 +241,6 @@ function deleteRound(roundId) {
  * @returns -- true if user confirms delete, false otherwise
  *************************************************************************/
 function confirmDelete(roundId) {
-  //TO DO: Present modal dialog prompting user to confirm delete
   //Return true if user confirms delete, false otherwise
   let modal = new bootstrap.Modal(
       document.getElementById("confirmDeleteRoundModal")
